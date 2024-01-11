@@ -17,8 +17,19 @@ modalClose.addEventListener('click', function () {
     hideModal();
 });
 
+window.addEventListener('click', function (e) {
+    if (e.target === modal) {
+        hideModal();
+    }
+});
+
+window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+        hideModal();
+    }
+});
 function showAlert(title, text) {
-    if (!title || !text) {
+    if (!title.trim() || !text.trim()) {
         alert('Add text');
     } else {
         modalTitle.textContent = title;
@@ -27,7 +38,7 @@ function showAlert(title, text) {
     }
 }
 
-function showModal() {// Enable scrolling
+function showModal() {
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
